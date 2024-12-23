@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="$LAWN Memecoin - Look at that smile!">
+    <title>$LAWN Memecoin</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #000000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .background-image {
+            position: absolute;
+            width: 200px;
+            height: 150px;
+            background: url('https://pbs.twimg.com/media/GfgZYfWWEAA_BAd?format=jpg&name=small') no-repeat center center;
+            background-size: cover;
+            animation: randomBounce 20s infinite;
+        }
+
+        @keyframes randomBounce {
+            0% {
+                transform: translate(0, 0);
+            }
+            5% {
+                transform: translate(20vw, 10vh);
+            }
+            10% {
+                transform: translate(40vw, 30vh);
+            }
+            15% {
+                transform: translate(60vw, 20vh) rotate(360deg);
+            }
+            20% {
+                transform: translate(80vw, 50vh);
+            }
+            25% {
+                transform: translate(50vw, 70vh);
+            }
+            30% {
+                transform: translate(70vw, 90vh);
+            }
+            35% {
+                transform: translate(30vw, 40vh);
+            }
+            40% {
+                transform: translate(60vw, 60vh);
+            }
+            45% {
+                transform: translate(20vw, 80vh) rotate(360deg);
+            }
+            50% {
+                transform: translate(10vw, 30vh);
+            }
+            55% {
+                transform: translate(90vw, 20vh);
+            }
+            60% {
+                transform: translate(80vw, 70vh);
+            }
+            65% {
+                transform: translate(40vw, 90vh);
+            }
+            70% {
+                transform: translate(20vw, 60vh);
+            }
+            75% {
+                transform: translate(70vw, 10vh) rotate(360deg);
+            }
+            80% {
+                transform: translate(50vw, 50vh);
+            }
+            85% {
+                transform: translate(90vw, 40vh);
+            }
+            90% {
+                transform: translate(30vw, 80vh);
+            }
+            95% {
+                transform: translate(60vw, 20vh);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 90%;
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 10;
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .link {
+            text-decoration: none;
+            color: #000000;
+            font-size: 1.2rem;
+            padding: 15px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            text-align: center;
+        }
+
+        .link:hover {
+            background-color: #000000;
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #666666;
+        }
+
+        .emoji {
+            position: absolute;
+            pointer-events: none;
+            font-size: 2rem;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: scale(1) translate(0, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2) translate(var(--x), var(--y));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-image"></div>
+    <main>
+        <h1>$LAWN</h1>
+        <a class="link" href="https://x.com" target="_blank" data-chinese="推特">X</a>
+        <a class="link" href="https://dex.com" target="_blank" data-chinese="去中心化交易">Dex</a>
+        <a class="link" href="https://t.me" target="_blank" data-chinese="电报">Telegram</a>
+        <a class="link" href="https://pump.fun" target="_blank" data-chinese="泵.fun">Pump.Fun</a>
+    </main>
+    <footer>
+        &copy; 2024 $LAWN Memecoin. All rights reserved.
+    </footer>
+    <script>
+        // Hover to translate text to Chinese
+        document.querySelectorAll('.link').forEach(link => {
+            link.addEventListener('mouseover', () => {
+                link.textContent = link.getAttribute('data-chinese');
+            });
+
+            link.addEventListener('mouseout', () => {
+                link.textContent = link.textContent === '推特' ? 'X' :
+                                   link.textContent === '去中心化交易' ? 'Dex' :
+                                   link.textContent === '电报' ? 'Telegram' :
+                                   'Pump.Fun';
+            });
+        });
+
+        // Add emojis on click
+        document.addEventListener('click', function(event) {
+            for (let i = 0; i < 10; i++) {
+                const emoji = document.createElement('div');
+                emoji.textContent = Math.random() < 0.3 ? '🇨🇳' : '🦁';
+                emoji.className = 'emoji';
+
+                const angle = Math.random() * 2 * Math.PI;
+                const distance = Math.random() * 100;
+                const x = Math.cos(angle) * distance;
+                const y = Math.sin(angle) * distance;
+
+                emoji.style.setProperty('--x', `${x}px`);
+                emoji.style.setProperty('--y', `${y}px`);
+                emoji.style.left = `${event.pageX}px`;
+                emoji.style.top = `${event.pageY}px`;
+
+                document.body.appendChild(emoji);
+
+                setTimeout(() => {
+                    emoji.remove();
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
+
